@@ -59,7 +59,7 @@ const useShopStore = create<cartState & cartActions>()((set) => ({
       const newState = state.cart.map((item) =>
         item.id === id ? { ...item, qty: item.qty - 1 } : item
       );
-      return { cart: newState.filter((item) => item.qty <= 0) };
+      return { cart: newState.filter((item) => item.qty > 0) };
     }),
   clearCart: () => set(() => ({ cart: [] })),
 }));
