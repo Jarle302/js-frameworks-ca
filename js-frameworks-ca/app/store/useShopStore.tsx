@@ -11,7 +11,7 @@ type Review = {
   description: string;
 };
 
-type item = {
+export type item = {
   id: string;
   title: string;
   description: string;
@@ -63,3 +63,5 @@ const useShopStore = create<cartState & cartActions>()((set) => ({
     }),
   clearCart: () => set(() => ({ cart: [] })),
 }));
+
+export default useShopStore;
