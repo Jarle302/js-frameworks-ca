@@ -7,20 +7,16 @@ import Link from "next/link";
 const buttonStyle =
   "w-5 h-5 bg-neutral-800 rounded-full flex justify-center items-center text-white";
 
-type CardProps = {
-  src: string;
-  alt: string;
-  title?: string;
-  price?: number;
-  id?: string;
-};
-
-const Card: FC<CardProps> = ({ src, alt }, item: item) => {
+const Card: FC<item> = (item: item) => {
   const { addToCart, removeOneQtyFromCart, clearCart } = useShopStore();
   return (
     <div className={"rounded-lg flex flex-col bg-zinc-200  "}>
       <Link href={"#"}>
-        <img src={src} className={"w-48 rounded-lg"} alt={alt} />
+        <img
+          src={item.image.url}
+          className={"w-48 rounded-lg"}
+          alt={item.image.alt}
+        />
       </Link>
       <div className={"p-1"}>
         <h3 className={"text-m  text-zinc-500"}>{item.title}</h3>
