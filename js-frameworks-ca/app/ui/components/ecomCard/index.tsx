@@ -6,9 +6,9 @@ import React, { FC } from "react";
 import Link from "next/link";
 
 const buttonStyle =
-  "w-14 h-8 p-4 bg-neutral-800 rounded-lg border-solid border-2 flex justify-center items-center text-neutral-100 text-xs";
+  "m-0 w-14 h-8 p-4 bg-neutral-800 rounded-lg border-solid border-2 flex justify-center items-center text-neutral-100 text-xs";
 const buttonStyles =
-  "w-5 h-5 p-4 border-solid border-2 border-neutral-800 rounded-full font-bold flex justify-center items-center text-neutral-800";
+  " m-0  flex justify-center items-center text-2xl text-neutral-800";
 
 const Card: FC<item> = (item: item) => {
   const { addToCart, removeOneQtyFromCart, clearCart } = useShopStore();
@@ -25,23 +25,25 @@ const Card: FC<item> = (item: item) => {
         />
       </Link>
       <div className={"p-1"}>
-        <h3 className={"text-s  text-zinc-500"}>
-          {item.title.length > 17
-            ? item.title.slice(0, 17) + "..."
-            : item.title}
-        </h3>
         <div className={"flex justify-between"}>
-          <p className={"text-l  text-m font-bold text-zinc-700"}>
-            {item.price}
-          </p>
-          <div className="flex items-center gap-1">
+          <div className={"flex flex-col"}>
+            <h3 className={"text-s  text-zinc-500"}>
+              {item.title.length > 14
+                ? item.title.slice(0, 14) + "..."
+                : item.title}
+            </h3>
+            <p className={"text-l  text-m font-bold text-zinc-700"}>
+              {item.price}
+            </p>
+          </div>
+          <div className="flex items-center flex-col gap-1">
+            <button className={buttonStyles} onClick={(e) => addToCart(item)}>
+              <FaCartPlus />
+            </button>
             <button
               className={buttonStyle}
               onClick={(e) => removeOneQtyFromCart(item.id)}>
               View Product
-            </button>
-            <button className={buttonStyles} onClick={(e) => addToCart(item)}>
-              <FaCartPlus />
             </button>
           </div>
         </div>

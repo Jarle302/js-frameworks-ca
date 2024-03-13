@@ -1,14 +1,17 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { Card } from "./ui/components/ecomCard";
 import ProductList from "./ui/components/ProductList";
 import useShopStore from "./store/useShopStore";
 import { item } from "./store/useShopStore";
+import { CartIcon } from "./ui/components/CartIcon";
+import { ShoppingCart } from "./ui/components/ShoppingCart";
 export default function Home() {
   const { cart } = useShopStore();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <CartIcon />
       <ProductList></ProductList>
       <Card
         title="This is a title test"
@@ -18,10 +21,11 @@ export default function Home() {
         alt="test"
       />
       <ul>
-        {cart.map((item:item) => (
+        {cart.map((item: item) => (
           <li>{item.title + item.qty}</li>
         ))}
       </ul>
+      <ShoppingCart isVisible={true} />
     </main>
   );
 }
