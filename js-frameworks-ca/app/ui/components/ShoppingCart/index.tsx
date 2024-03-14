@@ -9,9 +9,9 @@ const ShoppingCart: FC<{ isVisible: boolean }> = ({ isVisible }) => {
   return (
     <>
       {isVisible && (
-        <div >
-          {cart.map((item) => (
-            <CartCard key={item.id} {...item} />
+        <div className={"flex flex-col gap-5"}>
+          {cart.map((item, index) => (
+            <CartCard  index={index} key={item.id} {...item} />
           ))}
         </div>
       )}

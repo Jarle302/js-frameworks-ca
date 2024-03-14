@@ -1,7 +1,6 @@
 "use client";
 import useShopStore, { item } from "../../../store/useShopStore";
 import { FaCartPlus } from "react-icons/fa";
-
 import React, { FC } from "react";
 import Link from "next/link";
 

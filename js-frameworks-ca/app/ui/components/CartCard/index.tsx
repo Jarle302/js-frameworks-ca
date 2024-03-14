@@ -4,29 +4,56 @@ function roundToTwo(toBeRounded: number) {
   return Math.round(toBeRounded * 100) / 100;
 }
 
-const CartCard = (item: item & { qty: number }) => {
+const CartCard = ({
+  price,
+  image,
+  qty,
+  title,
+  index,
+  id,
+  ...rest
+}: item & {
+  qty: number;
+  index: number;
+}) => {
   const { addToCart, removeOneQtyFromCart } = useShopStore();
-  const sum = roundToTwo(item.qty * item.price);
-  return (
-    <div className={"rounded-lg flex items-center bg-zinc-200 shadow-md "}>
-      <img className={"w-20 h-20"} src={item.image.url} alt={item.image.alt} />
-      <div>
-        <div className={"flex w-[200px] gap-3"}>
-          <h3 className="text-lg  text-neutral-700">{item.title}</h3>
-          <p className={"font-bold"}>{item.price}</p>
-        </div>
+  const sum = roundToTwo(qty * price);
 
-        <div
-          className={
-            "border-solid border-2 border-zinc-800 w-max-min justify-evenly flex"
-          }>
-          <button onClick={() => removeOneQtyFromCart(item.id)}>-</button>
-          <span>{item.qty} </span>
-          <button onClick={() => addToCart(item)}>+</button>
+  return (
+    <div
+      className={`rounded-lg flex items-center ${
+        index % 2 === 0 ? "bg-zinc-200" : "bg-zinc-500"
+      } shadow-md gap-4 `}>
+      <img
+        className={"w-20 h-20"}
+        src={
+          image?.url ??
+          "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
+        alt={image?.alt ?? "Image of a product that is for sale"}
+      />
+      <div className={"flex flex-col justify-between h-[79px]"}>
+        <div className={"flex w-[290px] gap-3 justify-between"}>
+          <h3 className="text-lg  text-neutral-700">{title}</h3>
+          <p className={"font-bold"}>{price}</p>
         </div>
-        <p>
-          Sum: <span className={"font-bold"}>{sum}</span>
-        </p>
+        <div className={"flex justify-between"}>
+          <div
+            className={
+              "rounded-lg gap-4 p-1 w-min justify-evenly flex text-white bg-zinc-400"
+            }>
+            <button onClick={() => removeOneQtyFromCart(id)}>-</button>
+            <span>{qty} </span>
+            <button onClick={() => addToCart({price,
+  image,
+  title,
+  id,
+  ...rest})}>+</button>
+          </div>
+          <p>
+            Sum: <span className={"font-bold"}>{sum}</span>
+          </p>
+        </div>
       </div>
     </div>
   );
