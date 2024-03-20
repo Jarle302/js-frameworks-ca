@@ -1,17 +1,21 @@
 "use client";
 import React, { FC, useState } from "react";
-import useShopStore from "@/app/store/useShopStore";
-import { CartCard } from "@/app/ui/components/CartCard";
+import { useStore } from "@/app/_store/useShopStore";
+import { CartCard } from "@/app/_ui/components/CartCard";
 
 const ShoppingCart: FC<{ isVisible: boolean }> = ({ isVisible }) => {
-  const { cart, addToCart, removeOneQtyFromCart, clearCart } = useShopStore();
+  const state = useStore();
+  if (!state) {
+    return;
+  }
+  const { cart, addToCart, removeOneQtyFromCart, clearCart } = state();
 
   return (
     <>
       {isVisible && (
         <div className={"flex flex-col gap-5"}>
           {cart.map((item, index) => (
-            <CartCard  index={index} key={item.id} {...item} />
+            <CartCard index={index} key={item.id} {...item} />
           ))}
         </div>
       )}

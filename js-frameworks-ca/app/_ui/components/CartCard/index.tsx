@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import useShopStore, { item } from "@/app/store/useShopStore";
+import { useStore, item } from "@/app/_store/useShopStore";
 function roundToTwo(toBeRounded: number) {
   return Math.round(toBeRounded * 100) / 100;
 }
@@ -16,7 +16,11 @@ const CartCard = ({
   qty: number;
   index: number;
 }) => {
-  const { addToCart, removeOneQtyFromCart } = useShopStore();
+  const state = useStore();
+  if (!state) {
+    return;
+  }
+  const { addToCart, removeOneQtyFromCart } = state();
   const sum = roundToTwo(qty * price);
 
   return (
@@ -44,11 +48,10 @@ const CartCard = ({
             }>
             <button onClick={() => removeOneQtyFromCart(id)}>-</button>
             <span>{qty} </span>
-            <button onClick={() => addToCart({price,
-  image,
-  title,
-  id,
-  ...rest})}>+</button>
+            <button
+              onClick={() => addToCart({ price, image, title, id, ...rest })}>
+              +
+            </button>
           </div>
           <p>
             Sum: <span className={"font-bold"}>{sum}</span>

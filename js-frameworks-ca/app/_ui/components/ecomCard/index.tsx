@@ -1,8 +1,9 @@
 "use client";
-import useShopStore, { item } from "../../../store/useShopStore";
+import { useStore, item } from "../../../_store/useShopStore";
 import { FaCartPlus } from "react-icons/fa";
 import React, { FC } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const buttonStyle =
   "m-0 w-14 h-8 p-4 bg-neutral-800 rounded-lg border-solid border-2 flex justify-center items-center text-neutral-100 text-xs";
@@ -10,10 +11,15 @@ const buttonStyles =
   " m-0  flex justify-center items-center text-2xl text-neutral-800";
 
 const Card: FC<item> = (item: item) => {
-  const { addToCart, removeOneQtyFromCart, clearCart } = useShopStore();
+  const router = useRouter();
+  const state = useStore();
+  if (!state) {
+    return;
+  }
+  const { addToCart, removeOneQtyFromCart, clearCart } = state();
   return (
     <div className={"rounded-lg flex flex-col bg-zinc-200 shadow-md "}>
-      <Link href={"#"}>
+      <Link href={`/${item.id}`}>
         <img
           src={
             item?.image?.url ??
@@ -41,7 +47,7 @@ const Card: FC<item> = (item: item) => {
             </button>
             <button
               className={buttonStyle}
-              onClick={(e) => removeOneQtyFromCart(item.id)}>
+              onClick={() => router.push(`/${item.id}`)}>
               View Product
             </button>
           </div>
