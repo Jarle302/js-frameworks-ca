@@ -8,11 +8,12 @@ const NavBar = () => {
   const homePath = "/";
   const contactPath = "/contact";
   const [search, setSearch] = useState("");
-  const defaultStyle = "text-zinc-200 font-bold hover:text-green-300";
+  const defaultTextColor = "text-zinc-200";
+  const defaultStyle = `${defaultTextColor} font-bold hover:text-green-300`;
   const activeStyle =
     defaultStyle
       .split(" ")
-      .filter((arr) => arr !== "text-zinc-200")
+      .filter((arr) => arr !== defaultTextColor)
       .join(" ") + " text-green-500 hover:text-green-500";
   return (
     <nav className={"flex justify-between w-full"}>
