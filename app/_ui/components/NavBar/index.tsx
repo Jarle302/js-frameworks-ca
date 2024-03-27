@@ -2,18 +2,12 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 const NavBar = () => {
-  const currentPath = usePathname();
+  const pathname = usePathname();
   const homePath = "/";
   const contactPath = "/contact";
   const [search, setSearch] = useState("");
-  const [pathname, setPathName] = useState(() => currentPath);
-
-  useEffect(() => {
-    setPathName(currentPath);
-  }, [currentPath]);
-
   const defaultStyle = "text-zinc-200 font-bold hover:text-green-300 ";
   const activeStyle = `${defaultStyle}  text-green-500 hover:text-green-500`;
   console.log(pathname, homePath, contactPath);
