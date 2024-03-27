@@ -5,7 +5,11 @@ type InputProps = {
   name: string;
   value: string;
   label: string;
-  onChange: (e: React.ChangeEvent) => void;
+  onChange: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
   required?: boolean;
 };
 

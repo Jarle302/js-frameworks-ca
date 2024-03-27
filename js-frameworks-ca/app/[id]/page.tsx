@@ -14,7 +14,6 @@ type paramsObject = {
 
 const SpecificProduct = async ({ params }: paramsObject) => {
   const data: Data = await getItemById(params.id);
-  console.log("this is the data data data data", data);
   return (
     <main className={"p-2"}>
       <div className={"flex gap-2 flex-wrap"}>
@@ -62,7 +61,9 @@ const SpecificProduct = async ({ params }: paramsObject) => {
           " overflow-y-auto h-[150px] p-2 flex flex-col gap-2 max-w-[600px]"
         }>
         {data.data.reviews.length > 0 ? (
-          data.data.reviews.map((review) => <Review {...review} />)
+          data.data.reviews.map((review) => (
+            <Review key={review.description} {...review} />
+          ))
         ) : (
           <h3 className={"font-bold"}>Be the first to review this product!</h3>
         )}

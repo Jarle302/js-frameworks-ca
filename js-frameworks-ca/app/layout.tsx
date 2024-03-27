@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { racing, robotC } from "@/app/_ui/fonts";
 import "./globals.css";
 import { Header } from "./_ui/components/Header";
-const inter = Inter({ subsets: ["latin"] });
 import { StoreProvider } from "./_store/useShopStore";
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${robotC.variable} ${racing.variable} `}>
         <StoreProvider>
           <Header />
           {children}

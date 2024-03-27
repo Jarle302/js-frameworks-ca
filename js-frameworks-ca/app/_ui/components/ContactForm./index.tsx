@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { InputWithLabel } from "../InputWithLabel/InputWithLabel";
 
 const ContactForm = () => {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>
+    ) {
     SetFormData((prev) => {
       const { name, value } = event.target;
       return {
