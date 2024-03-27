@@ -2,16 +2,20 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const NavBar = () => {
-  const pathname = usePathname();
+  const currentPath = usePathname();
   const homePath = "/";
   const contactPath = "/contact";
   const [search, setSearch] = useState("");
+  const [pathname, setPathName] = useState(() => usePathname());
+
+  useEffect(() => {
+    setPathName(() => usePathname());
+  }, [currentPath]);
+
   const defaultStyle = "text-zinc-200 font-bold hover:text-green-300 ";
-  const [active, setActive] = useState(
-    `${defaultStyle}  text-green-500 hover:text-green-500`
-  );
+  const activeStyle = `${defaultStyle}  text-green-500 hover:text-green-500`;
   console.log(pathname, homePath, contactPath);
   return (
     <nav className={"flex justify-between w-full"}>
@@ -40,7 +44,7 @@ const NavBar = () => {
         <li>
           {" "}
           <Link
-            className={pathname === homePath ? active : defaultStyle}
+            className={pathname === homePath ? activeStyle : defaultStyle}
             href={homePath}>
             Home
           </Link>
@@ -48,7 +52,7 @@ const NavBar = () => {
         <li>
           {" "}
           <Link
-            className={pathname === contactPath ? active : defaultStyle}
+            className={pathname === contactPath ? activeStyle : defaultStyle}
             href={contactPath}>
             Contact Us
           </Link>
