@@ -13,7 +13,7 @@ const NavBar = () => {
     defaultStyle
       .split(" ")
       .filter((arr) => arr !== "text-zinc-200")
-      .join("") + " text-green-500 hover:text-green-500";
+      .join(" ") + " text-green-500 hover:text-green-500";
   return (
     <nav className={"flex justify-between w-full"}>
       <Link href={"/"}>
