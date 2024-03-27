@@ -8,7 +8,7 @@ const NavBar = () => {
   const homePath = "/";
   const contactPath = "/contact";
   const [search, setSearch] = useState("");
-  const [pathname, setPathName] = useState(() => usePathname());
+  const [pathname, setPathName] = useState(() => currentPath);
 
   useEffect(() => {
     setPathName(() => usePathname());
