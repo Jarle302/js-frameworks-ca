@@ -8,9 +8,9 @@ const NavBar = () => {
   const homePath = "/";
   const contactPath = "/contact";
   const [search, setSearch] = useState("");
-  const defaultStyle = "text-zinc-200 font-bold";
-  const activeStyle = `${defaultStyle} text-yellow-500 `;
-  console.log(search);
+  const defaultStyle = "text-zinc-200 font-bold hover:text-green-300 ";
+  const activeStyle = `${defaultStyle}  text-green-500 hover:text-green-500`;
+  console.log(pathname, homePath, contactPath);
   return (
     <nav className={"flex justify-between w-full"}>
       <Link href={"/"}>

@@ -33,9 +33,8 @@ const InputWithLabel = ({
           cols={30}
           rows={5}
           onChange={onChange}
-          required={required ? true : false}>
-          {value}
-        </textarea>
+          required={required ? true : false}
+          defaultValue={value}></textarea>
       ) : (
         <input
           className={"p-2 rounded-lg bg-neutral-800 text-zinc-200"}
