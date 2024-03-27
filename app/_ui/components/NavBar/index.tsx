@@ -11,7 +11,7 @@ const NavBar = () => {
   const [pathname, setPathName] = useState(() => currentPath);
 
   useEffect(() => {
-    setPathName(() => usePathname());
+    setPathName(currentPath);
   }, [currentPath]);
 
   const defaultStyle = "text-zinc-200 font-bold hover:text-green-300 ";
