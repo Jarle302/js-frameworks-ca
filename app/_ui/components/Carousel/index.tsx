@@ -14,9 +14,10 @@ export const Carousel = ({ posts }: { posts: item[] }) => {
   }, []);
   const { title, image, discountedPrice, price, description } =
     posts[postIndex];
-
+  const heightOfFixedNav = "55.2px";
   return (
-    <section className="border-4 rounded-md border-zinc-800">
+    <section
+      className={`border-4 rounded-md border-zinc-800 mt-[${heightOfFixedNav}] md:mt-0`}>
       <div className="absolute z-20 w-[100vw] h-[80vh] bg-zinc-600 opacity-15">
         {" "}
       </div>
