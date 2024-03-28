@@ -11,7 +11,9 @@ const NavBar = () => {
   const contactPath = "/contact";
   const breakPointWidth = 768;
   const [search, setSearch] = useState("");
-  const [isHidden, setIsHidden] = useState(window.innerWidth > breakPointWidth);
+  const [isHidden, setIsHidden] = useState(
+    typeof window !== "undefined" && window.innerWidth > breakPointWidth
+  );
   const defaultTextColor = "text-zinc-200";
   const defaultStyle = `${defaultTextColor} font-bold hover:text-green-300`;
   const activeStyle =
